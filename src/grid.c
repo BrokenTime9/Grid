@@ -63,38 +63,82 @@ void cellInit(win1 *w) {
   }
 }
 
-void gridWinInit(win1 *win, int h, int w) {
+void tempCellInit(win1 *w) {
 
-  // win->info.h = 10;
-  // win->info.w = 10;
-  // win->info.cols = w;
-  // win->info.rows = 10;
+  int prevColStart;
+  int prevColEnd;
+  int prevRowStart;
+  int prevRowEnd;
+
+  for (int row = 0; row < w->info.rows; row++) {
+    for (int col = 0; col < w->info.cols; col++) {
+
+      int index = row * w->info.cols + col;
+
+      int startX;
+      int startY;
+      int endX;
+      int endY;
+
+      startX = col * w->info.tempW + 1;
+      startY = row * w->info.tempH + 1;
+
+      endX = col * w->info.tempW + w->info.tempW;
+      endY = row * w->info.tempH + w->info.tempH;
+
+      if (col != 0 && row == 0) {
+        startX = prevColStart + w->info.tempW + 1;
+        startY = row * w->info.tempH + 1;
+
+        endX = prevColEnd + w->info.tempW + 1;
+        endY = row * w->info.tempH + w->info.tempH;
+      }
+      if (row != 0 && col == 0) {
+        startX = col * w->info.tempW + 1;
+        startY = prevRowStart + w->info.tempH + 1;
+
+        endX = col * w->info.tempW + w->info.tempW;
+        endY = prevRowEnd + w->info.tempH + 1;
+      }
+
+      if (col != 0 && row != 0) {
+        startX = prevColStart + w->info.tempW + 1;
+        startY = prevRowStart;
+
+        endX = prevColEnd + w->info.tempW + 1;
+        endY = prevRowEnd;
+      }
+
+      w->tempCells[index].info.tl.x = startX;
+      w->tempCells[index].info.tl.y = startY;
+
+      w->tempCells[index].info.br.x = endX;
+      w->tempCells[index].info.br.y = endY;
+
+      w->tempCells[index].isSelected = w->cells[index].isSelected;
+
+      prevColStart = startX;
+      prevColEnd = endX;
+      prevRowStart = startY;
+      prevRowEnd = endY;
+    }
+  }
+  return;
+}
+
+void gridWinInit(win1 *win, int h, int w) {
 
   win->h = h - 2;
   win->w = w - 2;
 
-  if ((win->info.h * win->info.rows) > h) {
-    for (int i = win->info.rows; i > 0; i--) {
-      if ((win->info.h * i) < h - 2) {
-        win->info.rows = i;
-        break;
-      }
-    }
-  }
-
-  if ((win->info.w * win->info.cols) > (w - (win->info.cols * 6))) {
-    for (int i = win->info.cols; i > 0; i--) {
-      if ((win->info.w * i) < w - 2) {
-        win->info.cols = i;
-        break;
-      }
-    }
-  }
+  win->info.tempH = win->info.h;
+  win->info.tempW = win->info.w;
 
   win->totalCells = win->info.cols * win->info.rows;
 
   win->cursor = 0;
   win->cells = malloc(sizeof(cell) * win->totalCells);
+  win->tempCells = malloc(sizeof(cell) * win->totalCells);
 
   cellInit(win);
 

@@ -1,11 +1,13 @@
 #include "../include/render.h"
+#include "../include/customColors.h"
+#include <ncurses.h>
 
 void colorControl(WINDOW *w, int t, cell c) {
   // normal
   if (t == 0) {
     for (int i = c.info.tl.x; i <= c.info.br.x; i++) {
       for (int j = c.info.tl.y; j <= c.info.br.y; j++) {
-        mvwaddch(w, j, i, ' ');
+        mvwaddch(w, j, i, ' ' | COLOR_PAIR(secondaryBg));
       }
     }
   }
@@ -14,7 +16,7 @@ void colorControl(WINDOW *w, int t, cell c) {
   if (t == 1) {
     for (int i = c.info.tl.x; i <= c.info.br.x; i++) {
       for (int j = c.info.tl.y; j <= c.info.br.y; j++) {
-        mvwaddch(w, j, i, ' ' | COLOR_PAIR(2));
+        mvwaddch(w, j, i, ' ' | COLOR_PAIR(selected));
       }
     }
   }
@@ -23,7 +25,7 @@ void colorControl(WINDOW *w, int t, cell c) {
   if (t == 2) {
     for (int i = c.info.tl.x; i <= c.info.br.x; i++) {
       for (int j = c.info.tl.y; j <= c.info.br.y; j++) {
-        mvwaddch(w, j, i, ' ' | COLOR_PAIR(1));
+        mvwaddch(w, j, i, ' ' | COLOR_PAIR(cursor));
       }
     }
   }
@@ -32,6 +34,10 @@ void colorControl(WINDOW *w, int t, cell c) {
 void gridRender(win1 *w) {
   // rendering the fence
   //
+  werase(w->window);
+  wrefresh(w->window);
+
+  wbkgd(w->window, COLOR_PAIR(primaryBg));
 
   for (int i = 0; i < w->totalCells; i++) {
     cell *c = &w->cells[i];
@@ -45,27 +51,27 @@ void gridRender(win1 *w) {
     if (startX == 1) {
 
       for (int y = startY; y <= endY; y++) {
-        mvwaddch(w->window, y, startX - 1, '|');
+        mvwaddch(w->window, y, startX - 1, '|' | COLOR_PAIR(bordr));
       }
     }
 
     if (startY == 1) {
 
       for (int x = startX; x <= endX; x++) {
-        mvwaddch(w->window, startY - 1, x, '-');
+        mvwaddch(w->window, startY - 1, x, '-' | COLOR_PAIR(bordr));
       }
     }
 
     for (int x = startX; x <= endX; x++) {
-      mvwaddch(w->window, endY + 1, x, '-');
+      mvwaddch(w->window, endY + 1, x, '-' | COLOR_PAIR(bordr));
     }
 
     for (int y = startY; y <= endY; y++) {
-      mvwaddch(w->window, y, endX + 1, '|');
+      mvwaddch(w->window, y, endX + 1, '|' | COLOR_PAIR(bordr));
     }
 
-    mvwaddch(w->window, endY + 1, endX + 1, '+');
-    mvwaddch(w->window, startY - 1, startX - 1, '+');
+    mvwaddch(w->window, endY + 1, endX + 1, '+' | COLOR_PAIR(bordr));
+    mvwaddch(w->window, startY - 1, startX - 1, '+' | COLOR_PAIR(bordr));
 
     if (c->isSelected == true) {
       colorControl(w->window, 1, w->cells[i]);
@@ -75,38 +81,70 @@ void gridRender(win1 *w) {
       colorControl(w->window, 2, w->cells[i]);
     }
   }
-  // visual render
-  /*
-  int startX = w->visStart % w->info.cols;
-  int startY = w->visStart / w->info.cols;
+  wrefresh(w->window);
+  return;
+}
 
-  int endX = w->cursor % w->info.cols;
-  int endY = w->cursor / w->info.cols;
+void tempGridRender(win1 *w) {
+  // rendering the fence
+  //
 
-  int minX = startX < endX ? startX : endX;
-  int maxX = startX > endX ? startX : endX;
+  werase(w->window);
+  for (int i = 0; i < w->totalCells; i++) {
+    cell *c = &w->tempCells[i];
+    cell *oc = &w->cells[i];
 
-  int minY = startY < endY ? startY : endY;
-  int maxY = startY > endY ? startY : endY;
+    int startX = c->info.tl.x;
+    int startY = c->info.tl.y;
 
-  for (int y = minY; y <= maxY; y++) {
-    for (int x = minX; x <= maxX; x++) {
+    int endX = c->info.br.x;
+    int endY = c->info.br.y;
 
-      int index = y * w->info.cols + x;
+    if (startX == 1) {
 
-      w->cells[index].isVisSelected = true;
-      colorControl(w->window, 3, w->cells[index]);
+      for (int y = startY; y <= endY; y++) {
+        mvwaddch(w->window, y, startX - 1, '|' | COLOR_PAIR(bordr));
+      }
+    }
+
+    if (startY == 1) {
+
+      for (int x = startX; x <= endX; x++) {
+        mvwaddch(w->window, startY - 1, x, '-' | COLOR_PAIR(bordr));
+      }
+    }
+
+    for (int x = startX; x <= endX; x++) {
+      mvwaddch(w->window, endY + 1, x, '-' | COLOR_PAIR(bordr));
+    }
+
+    for (int y = startY; y <= endY; y++) {
+      mvwaddch(w->window, y, endX + 1, '|' | COLOR_PAIR(bordr));
+    }
+
+    mvwaddch(w->window, endY + 1, endX + 1, '+' | COLOR_PAIR(bordr));
+    mvwaddch(w->window, startY - 1, startX - 1, '+' | COLOR_PAIR(bordr));
+
+    if (oc->isSelected == true) {
+      colorControl(w->window, 1, w->tempCells[i]);
+    }
+
+    if (i == w->cursor) {
+      colorControl(w->window, 2, w->tempCells[i]);
     }
   }
-  */
-
   wrefresh(w->window);
   return;
 }
 
 void sidebarRender(win *w) {
   werase(w->win2.win);
+
+  wbkgd(w->win2.win, COLOR_PAIR(primaryBg));
+
+  wattron(w->win2.win, COLOR_PAIR(bordr));
   box(w->win2.win, 0, 0);
+  wattroff(w->win2.win, COLOR_PAIR(bordr));
 
   int starty = 1;
   int startx = 2;
@@ -132,3 +170,10 @@ void sidebarRender(win *w) {
   wrefresh(w->win2.win);
   return;
 }
+
+void resizeCell(win *w, int ch) {
+
+  if (ch == 'r') {
+    gridRender(&w->win1);
+  }
+};

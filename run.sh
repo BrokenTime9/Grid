@@ -2,6 +2,6 @@
 
 mkdir -p build
 
-gcc ./src/*.c -lncurses -o build/app
+gcc ./src/*.c -o build/app -lform -lncurses
 
 ./build/app $1 $2 $3 $4
