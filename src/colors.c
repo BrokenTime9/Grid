@@ -10,7 +10,7 @@ void customColors(Theme theme) {
   init_pair(bordr, hexToXterm(theme.border), hexToXterm(theme.background));
   init_pair(cursor, hexToXterm(theme.cursor), hexToXterm(theme.cursor));
   init_pair(selected, hexToXterm(theme.selected), hexToXterm(theme.selected));
-  init_pair(warning, hexToXterm(theme.warning), hexToXterm(theme.background));
+  init_pair(warn, hexToXterm(theme.warning), hexToXterm(theme.secondary));
 }
 
 int retDex(char x) {

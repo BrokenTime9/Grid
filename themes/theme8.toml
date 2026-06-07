@@ -1,0 +1,8 @@
+[colors]
+background = "0b132b"
+text = "edf2fb"
+border = "3a506b"
+cursor = "5bc0eb"
+selected = "9ad1ff"
+warning = "ff6b6b"
+secondary = "6fffe9"

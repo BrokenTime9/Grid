@@ -6,10 +6,8 @@ int loadTheme(const char *filename, Theme *theme) {
   FILE *fp = fopen(filename, "r");
 
   if (!fp) {
-    perror("fopen");
     return 0;
-  } else
-    puts("opened");
+  }
 
   char line[128];
 

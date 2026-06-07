@@ -26,6 +26,8 @@ typedef struct {
 
   bool resize;
   bool cmd;
+  bool warning;
+  char *warningText;
 
 } extras;
 
@@ -57,7 +59,6 @@ typedef struct {
   cell *tempCells;
 
   gridInfo info;
-  extras extras;
 
 } win1;
 
@@ -81,6 +82,8 @@ typedef struct {
   WINDOW *popup;
   WINDOW *infoPopup;
   WINDOW *cmd;
+
+  extras extras;
 } win;
 
 #endif // ndef TYPES_H

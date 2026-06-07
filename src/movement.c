@@ -74,7 +74,7 @@ void selection(win *w, int ch) {
 
   w->win1.cells[x].isSelected = !w->win1.cells[x].isSelected;
 
-  if (w->win1.extras.resize == true) {
+  if (w->extras.resize == true) {
 
     tempGridRender(&w->win1);
   } else {

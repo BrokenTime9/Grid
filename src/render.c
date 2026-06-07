@@ -171,6 +171,37 @@ void sidebarRender(win *w) {
   return;
 }
 
+void infoWinRender(win *window) {
+
+  wattron(window->win4, COLOR_PAIR(bordr));
+  box(window->win4, 0, 0);
+  wattroff(window->win4, COLOR_PAIR(bordr));
+
+  wbkgd(window->win4, COLOR_PAIR(primaryBg));
+
+  wattron(window->win4, COLOR_PAIR(primaryText));
+  mvwprintw(window->win4, 0, 2, "( %d %d )",
+            window->win1.cursor % window->win1.info.w,
+            window->win1.cursor / window->win1.info.w);
+  mvwprintw(window->win4, 0, 12, "HEIGHT: %d", window->win1.info.h);
+  mvwprintw(window->win4, 1, 12, "WIDTH: %d", window->win1.info.w);
+  mvwprintw(window->win4, 0, 25, "COLS: %d", window->win1.info.cols);
+  mvwprintw(window->win4, 1, 25, "ROWS: %d", window->win1.info.rows);
+  mvwprintw(window->win4, 1, 35, " F1 : help ");
+  wattroff(window->win4, COLOR_PAIR(primaryText));
+
+  wrefresh(window->win4);
+}
+
+void updateStatusBar(win *window) {
+  mvwprintw(window->win4, 0, 2, "         ");
+
+  mvwprintw(window->win4, 0, 2, "( %d %d )",
+            window->win1.cursor % window->win1.info.cols,
+            window->win1.cursor / window->win1.info.cols);
+
+  wrefresh(window->win4);
+}
 void resizeCell(win *w, int ch) {
 
   if (ch == 'r') {

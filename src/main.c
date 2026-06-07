@@ -3,13 +3,13 @@
 #include <stdlib.h>
 
 #include "../include/cleanup.h"
+#include "../include/command.h"
 #include "../include/customColors.h"
 #include "../include/grid.h"
 #include "../include/movement.h"
 #include "../include/popup.h"
 #include "../include/render.h"
 #include "../include/window.h"
-#include <unistd.h>
 
 int main(int argc, char *argv[]) {
 
@@ -28,7 +28,6 @@ int main(int argc, char *argv[]) {
   Theme theme;
 
   char *themefile = "themes/theme6.toml";
-  loadTheme(themefile, &theme);
 
   if (!loadTheme(themefile, &theme)) {
     fprintf(stderr, "Failed to load theme\n");
@@ -65,6 +64,7 @@ int main(int argc, char *argv[]) {
   rootInit(&root);
   gridRender(&root.win1);
   sidebarRender(&root);
+  infoWinRender(&root);
 
   int ch;
 
@@ -98,7 +98,7 @@ int main(int argc, char *argv[]) {
       cursorMove(ch, &root.win1);
       updateStatusBar(&root);
 
-      if (root.win1.extras.resize) {
+      if (root.extras.resize) {
         tempGridRender(&root.win1);
       } else {
         gridRender(&root.win1);
@@ -107,14 +107,14 @@ int main(int argc, char *argv[]) {
 
     // resize
     if (ch == 'r') {
-      root.win1.extras.resize = false;
+      root.extras.resize = false;
       gridRender(&root.win1);
       root.win1.info.tempW = root.win1.info.w;
       root.win1.info.tempH = root.win1.info.h;
     }
     if (ch == KEY_UP) {
 
-      root.win1.extras.resize = true;
+      root.extras.resize = true;
       if (root.win1.info.tempH - 1 >= 1) {
         root.win1.info.tempH = root.win1.info.tempH - 1;
         tempCellInit(&root.win1);
@@ -124,7 +124,7 @@ int main(int argc, char *argv[]) {
 
     if (ch == KEY_DOWN) {
 
-      root.win1.extras.resize = true;
+      root.extras.resize = true;
       root.win1.info.tempH = root.win1.info.tempH + 1;
       tempCellInit(&root.win1);
       tempGridRender(&root.win1);
@@ -132,7 +132,7 @@ int main(int argc, char *argv[]) {
 
     if (ch == KEY_LEFT) {
 
-      root.win1.extras.resize = true;
+      root.extras.resize = true;
       if (root.win1.info.tempW - 1 >= 1) {
         root.win1.info.tempW = root.win1.info.tempW - 1;
         tempCellInit(&root.win1);
@@ -142,7 +142,7 @@ int main(int argc, char *argv[]) {
 
     if (ch == KEY_RIGHT) {
 
-      root.win1.extras.resize = true;
+      root.extras.resize = true;
       root.win1.info.tempW = root.win1.info.tempW + 1;
       tempCellInit(&root.win1);
       tempGridRender(&root.win1);
@@ -151,6 +151,10 @@ int main(int argc, char *argv[]) {
     if (ch == 'x' || ch == 27) {
       selection(&root, ch);
       sidebarRender(&root);
+    }
+
+    if (ch == ':') {
+      command(&root);
     }
   }
 

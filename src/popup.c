@@ -208,10 +208,7 @@ int valueSetter(win *window) {
         return 0;
       } else {
 
-        wattron(stdscr, COLOR_PAIR(warning));
         mvprintw(y + 10, x, "**Please ENTER All values to proceed**");
-
-        wattroff(stdscr, COLOR_PAIR(warning));
       }
 
       break;
