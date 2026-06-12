@@ -1,8 +1,8 @@
 #ifndef EXPORT_H
 #define EXPORT_H
 
-#include "types.h"
+#include "../types.h"
 
-void quit(win *w);
+void exportCoords(win *w);
 
 #endif // !EXPORT_H

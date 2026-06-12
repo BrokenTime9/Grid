@@ -1,28 +1,28 @@
-#include "../../include/refresh.h"
-#include "../../include/render.h"
+#include "../../include/lib/refresh.h"
+#include "../../include/render/render.h"
 #include <ncurses.h>
 
 void refreshWin1(win *w) {
 
-  werase(w->win1.window);
+  werase(w->win[GRID]);
   if (w->extras.resize) {
-    tempGridRender(&w->win1);
+    tempGridRender(w);
   } else {
-    gridRender(&w->win1);
+    gridRender(w);
   }
-  wrefresh(w->win1.window);
-};
+  wrefresh(w->win[GRID]);
+}
 
 void refreshWin2(win *w) {
 
-  werase(w->win2.win);
+  werase(w->win[SIDEBAR]);
   sidebarRender(w);
-  wrefresh(w->win2.win);
-};
+  wrefresh(w->win[SIDEBAR]);
+}
 
 void refreshWin4(win *w) {
 
-  werase(w->win4);
+  werase(w->win[INFO]);
   infoWinRender(w);
-  wrefresh(w->win4);
-};
+  wrefresh(w->win[INFO]);
+}

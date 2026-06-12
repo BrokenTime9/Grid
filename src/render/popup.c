@@ -1,57 +1,58 @@
-#include "../include/popup.h"
-#include "../include/customColors.h"
-#include "../include/export.h"
+#include "../../include/render/popup.h"
+#include "../../include/lib/export.h"
+#include "../../include/themes/customColors.h"
 #include <form.h>
 #include <ncurses.h>
 #include <stdlib.h>
 
-int confirmWin(win *window) {
+int confirmWin(win *w) {
   int h = 3;
-  int w = 100;
+  int wd = 100;
 
-  int y = (window->rows - h) / 2;
-  int x = (window->cols - w) / 2;
+  int y = (w->rows - h) / 2;
+  int x = (w->cols - wd) / 2;
 
-  int yx = w * 0.25;
-  int nx = w - yx * 2;
+  int yx = wd * 0.25;
+  int nx = wd - yx * 2;
 
-  window->popup = newwin(h, w, y, x);
+  w->win[POPUP] = newwin(h, wd, y, x);
 
-  wbkgd(window->popup, COLOR_PAIR(primaryBg));
-  wattron(window->popup, COLOR_PAIR(border));
-  box(window->popup, 0, 0);
-  wattroff(window->popup, COLOR_PAIR(border));
+  wbkgd(w->win[POPUP], COLOR_PAIR(primaryBg));
 
-  wattron(window->popup, COLOR_PAIR(primaryText));
-  mvwprintw(window->popup, 0, 2, " Would you like to extract the cords? ");
+  wattron(w->win[POPUP], COLOR_PAIR(bordr));
+  box(w->win[POPUP], 0, 0);
+  wattroff(w->win[POPUP], COLOR_PAIR(bordr));
 
-  mvwprintw(window->popup, 2, yx, " Y : Yes ");
+  wattron(w->win[POPUP], COLOR_PAIR(primaryText));
+  mvwprintw(w->win[POPUP], 0, 2, " Would you like to extract the cords? ");
 
-  mvwprintw(window->popup, 2, nx, " N : No ");
-  wattroff(window->popup, COLOR_PAIR(primaryText));
+  mvwprintw(w->win[POPUP], 2, yx, " Y : Yes ");
 
-  wrefresh(window->popup);
+  mvwprintw(w->win[POPUP], 2, nx, " N : No ");
+  wattroff(w->win[POPUP], COLOR_PAIR(primaryText));
+
+  wrefresh(w->win[POPUP]);
 
   int ch;
   while (1) {
     ch = getch();
     if (ch == 'n') {
 
-      werase(window->popup);
-      wrefresh(window->popup);
-      delwin(window->popup);
+      werase(w->win[POPUP]);
+      wrefresh(w->win[POPUP]);
+      delwin(w->win[POPUP]);
 
-      touchwin(window->root);
+      touchwin(w->win[ROOT]);
 
-      wrefresh(window->root);
-      wrefresh(window->win1.window);
-      wrefresh(window->win2.win);
-      wrefresh(window->win4);
+      wrefresh(w->win[ROOT]);
+      wrefresh(w->win[GRID]);
+      wrefresh(w->win[SIDEBAR]);
+      wrefresh(w->win[INFO]);
 
       return 0;
     }
     if (ch == 'y') {
-      exportCoords(window);
+      exportCoords(w);
       return 1;
     }
   }
@@ -223,60 +224,60 @@ int valueSetter(win *window) {
   return 0;
 };
 
-int infoWin(win *window) {
+int infoWin(win *w) {
   int h = 20;
-  int w = 100;
+  int wd = 100;
 
-  int y = (window->rows - h) / 2;
-  int x = (window->cols - w) / 2;
+  int y = (w->rows - h) / 2;
+  int x = (w->cols - wd) / 2;
 
-  int yx = w * 0.25;
-  int nx = w - yx * 2;
+  int yx = wd * 0.25;
+  int nx = wd - yx * 2;
 
-  window->infoPopup = newwin(h, w, y, x);
+  w->win[INFOPOPUP] = newwin(h, wd, y, x);
 
-  wbkgd(window->infoPopup, COLOR_PAIR(primaryBg));
+  wbkgd(w->win[INFOPOPUP], COLOR_PAIR(primaryBg));
 
-  wattron(window->infoPopup, COLOR_PAIR(bordr));
-  box(window->infoPopup, 0, 0);
-  wattroff(window->infoPopup, COLOR_PAIR(bordr));
+  wattron(w->win[INFOPOPUP], COLOR_PAIR(bordr));
+  box(w->win[INFOPOPUP], 0, 0);
+  wattroff(w->win[INFOPOPUP], COLOR_PAIR(bordr));
 
-  wattron(window->infoPopup, COLOR_PAIR(primaryText) | A_BOLD);
-  mvwprintw(window->infoPopup, 0, 2, "Key bindings");
+  wattron(w->win[INFOPOPUP], COLOR_PAIR(primaryText) | A_BOLD);
+  mvwprintw(w->win[INFOPOPUP], 0, 2, "Key bindings");
 
-  mvwprintw(window->infoPopup, 1, 2, "Movement");
-  mvwprintw(window->infoPopup, 3, 2, "H: left");
-  mvwprintw(window->infoPopup, 4, 2, "J: down");
-  mvwprintw(window->infoPopup, 5, 2, "L: right ");
-  mvwprintw(window->infoPopup, 6, 2, "K: up");
+  mvwprintw(w->win[INFOPOPUP], 1, 2, "Movement");
+  mvwprintw(w->win[INFOPOPUP], 3, 2, "H: left");
+  mvwprintw(w->win[INFOPOPUP], 4, 2, "J: down");
+  mvwprintw(w->win[INFOPOPUP], 5, 2, "L: right ");
+  mvwprintw(w->win[INFOPOPUP], 6, 2, "K: up");
 
-  mvwprintw(window->infoPopup, 8, 2, "Resize");
+  mvwprintw(w->win[INFOPOPUP], 8, 2, "Resize");
 
-  mvwprintw(window->infoPopup, 10, 2, "R: reset");
-  mvwprintw(window->infoPopup, 11, 2, "Left Key: reduce widht");
-  mvwprintw(window->infoPopup, 12, 2, "Down Key: increase height");
-  mvwprintw(window->infoPopup, 13, 2, "Right Key: increase width");
-  mvwprintw(window->infoPopup, 14, 2, "Up Key: reduce height");
+  mvwprintw(w->win[INFOPOPUP], 10, 2, "R: reset");
+  mvwprintw(w->win[INFOPOPUP], 11, 2, "Left Key: reduce widht");
+  mvwprintw(w->win[INFOPOPUP], 12, 2, "Down Key: increase height");
+  mvwprintw(w->win[INFOPOPUP], 13, 2, "Right Key: increase width");
+  mvwprintw(w->win[INFOPOPUP], 14, 2, "Up Key: reduce height");
 
-  wattroff(window->infoPopup, COLOR_PAIR(primaryText) | A_BOLD);
+  wattroff(w->win[INFOPOPUP], COLOR_PAIR(primaryText) | A_BOLD);
 
-  wrefresh(window->infoPopup);
+  wrefresh(w->win[INFOPOPUP]);
 
   int ch;
   while (1) {
     ch = getch();
     if (ch == 'q') {
 
-      werase(window->infoPopup);
-      wrefresh(window->infoPopup);
-      delwin(window->infoPopup);
+      werase(w->win[INFOPOPUP]);
+      wrefresh(w->win[INFOPOPUP]);
+      delwin(w->win[INFOPOPUP]);
 
-      touchwin(window->root);
+      touchwin(w->win[ROOT]);
 
-      wrefresh(window->root);
-      wrefresh(window->win1.window);
-      wrefresh(window->win2.win);
-      wrefresh(window->win4);
+      wrefresh(w->win[ROOT]);
+      wrefresh(w->win[GRID]);
+      wrefresh(w->win[SIDEBAR]);
+      wrefresh(w->win[INFO]);
 
       return 0;
     }

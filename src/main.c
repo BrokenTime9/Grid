@@ -1,15 +1,17 @@
 #include <locale.h>
 #include <ncurses.h>
+#include <stdio.h>
 #include <stdlib.h>
 
-#include "../include/cleanup.h"
-#include "../include/command.h"
-#include "../include/customColors.h"
-#include "../include/grid.h"
-#include "../include/movement.h"
-#include "../include/popup.h"
-#include "../include/render.h"
-#include "../include/window.h"
+#include "../include/command/command.h"
+#include "../include/core/etc.h"
+#include "../include/core/grid.h"
+#include "../include/core/window.h"
+#include "../include/lib/cleanup.h"
+#include "../include/lib/warning.h"
+#include "../include/movement/movement.h"
+#include "../include/render/popup.h"
+#include "../include/render/render.h"
 
 int main(int argc, char *argv[]) {
 
@@ -25,18 +27,11 @@ int main(int argc, char *argv[]) {
   start_color();
   use_default_colors();
 
-  Theme theme;
-
-  char *themefile = "themes/theme6.toml";
-
-  if (!loadTheme(themefile, &theme)) {
-    fprintf(stderr, "Failed to load theme\n");
-    return 1;
-  }
-
-  customColors(theme);
-
   win root;
+
+  XtermColorPallete(&root);
+  ThemeInit(&root);
+  CommandInit(&root);
 
   int rows, cols;
   getmaxyx(stdscr, rows, cols);
@@ -62,7 +57,7 @@ int main(int argc, char *argv[]) {
   curs_set(0);
 
   rootInit(&root);
-  gridRender(&root.win1);
+  gridRender(&root);
   sidebarRender(&root);
   infoWinRender(&root);
 
@@ -82,6 +77,16 @@ int main(int argc, char *argv[]) {
     if (ch == KEY_F(1)) {
       infoWin(&root);
     }
+    if (ch == 'p') {
+      printf("cells:     (%d,%d) -> (%d,%d)\n", root.win1.cells[1].info.tl.x,
+             root.win1.cells[1].info.tl.y, root.win1.cells[1].info.br.x,
+             root.win1.cells[1].info.br.y);
+
+      printf("tempCells: (%d,%d) -> (%d,%d)\n",
+             root.win1.tempCells[1].info.tl.x, root.win1.tempCells[1].info.tl.y,
+             root.win1.tempCells[1].info.br.x,
+             root.win1.tempCells[1].info.br.y);
+    }
 
     // export
     if (ch == 'e') {
@@ -95,20 +100,20 @@ int main(int argc, char *argv[]) {
 
     // move
     if (ch == 'j' || ch == 'h' || ch == 'k' || ch == 'l') {
-      cursorMove(ch, &root.win1);
+      cursorMove(ch, &root);
       updateStatusBar(&root);
 
       if (root.extras.resize) {
-        tempGridRender(&root.win1);
+        tempGridRender(&root);
       } else {
-        gridRender(&root.win1);
+        gridRender(&root);
       }
     }
 
     // resize
     if (ch == 'r') {
       root.extras.resize = false;
-      gridRender(&root.win1);
+      gridRender(&root);
       root.win1.info.tempW = root.win1.info.w;
       root.win1.info.tempH = root.win1.info.h;
     }
@@ -118,7 +123,8 @@ int main(int argc, char *argv[]) {
       if (root.win1.info.tempH - 1 >= 1) {
         root.win1.info.tempH = root.win1.info.tempH - 1;
         tempCellInit(&root.win1);
-        tempGridRender(&root.win1);
+        tempGridRender(&root);
+        updateStatusBar(&root);
       }
     }
 
@@ -127,7 +133,8 @@ int main(int argc, char *argv[]) {
       root.extras.resize = true;
       root.win1.info.tempH = root.win1.info.tempH + 1;
       tempCellInit(&root.win1);
-      tempGridRender(&root.win1);
+      tempGridRender(&root);
+      updateStatusBar(&root);
     }
 
     if (ch == KEY_LEFT) {
@@ -136,7 +143,8 @@ int main(int argc, char *argv[]) {
       if (root.win1.info.tempW - 1 >= 1) {
         root.win1.info.tempW = root.win1.info.tempW - 1;
         tempCellInit(&root.win1);
-        tempGridRender(&root.win1);
+        tempGridRender(&root);
+        updateStatusBar(&root);
       }
     }
 
@@ -145,7 +153,9 @@ int main(int argc, char *argv[]) {
       root.extras.resize = true;
       root.win1.info.tempW = root.win1.info.tempW + 1;
       tempCellInit(&root.win1);
-      tempGridRender(&root.win1);
+      tempGridRender(&root);
+
+      updateStatusBar(&root);
     }
 
     if (ch == 'x' || ch == 27) {
@@ -155,6 +165,10 @@ int main(int argc, char *argv[]) {
 
     if (ch == ':') {
       command(&root);
+    }
+
+    if (root.extras.warning && root.extras.warningText) {
+      DisplayWarning(&root);
     }
   }
 

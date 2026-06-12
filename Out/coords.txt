@@ -1,0 +1,714 @@
+0 -
+	topleft - 0  0
+	bottomright 720896 1 
+
+	color : r: 0 g: 255  b: 0
+
+1 -
+	topleft - 852200  1
+	bottomright 3 1 
+
+	color : r: 8 g: 8  b: 8
+
+165 -
+	topleft - 11  9
+	bottomright 11 9 
+
+	color : r: 8 g: 8  b: 8
+
+166 -
+	topleft - 13  9
+	bottomright 13 9 
+
+	color : r: 8 g: 8  b: 8
+
+167 -
+	topleft - 15  9
+	bottomright 15 9 
+
+	color : r: 8 g: 8  b: 8
+
+168 -
+	topleft - 17  9
+	bottomright 17 9 
+
+	color : r: 8 g: 8  b: 8
+
+169 -
+	topleft - 19  9
+	bottomright 19 9 
+
+	color : r: 8 g: 8  b: 8
+
+170 -
+	topleft - 21  9
+	bottomright 21 9 
+
+	color : r: 8 g: 8  b: 8
+
+171 -
+	topleft - 23  9
+	bottomright 23 9 
+
+	color : r: 8 g: 8  b: 8
+
+172 -
+	topleft - 25  9
+	bottomright 25 9 
+
+	color : r: 8 g: 8  b: 8
+
+173 -
+	topleft - 27  9
+	bottomright 27 9 
+
+	color : r: 8 g: 8  b: 8
+
+174 -
+	topleft - 29  9
+	bottomright 29 9 
+
+	color : r: 8 g: 8  b: 8
+
+175 -
+	topleft - 31  9
+	bottomright 31 9 
+
+	color : r: 8 g: 8  b: 8
+
+176 -
+	topleft - 33  9
+	bottomright 33 9 
+
+	color : r: 8 g: 8  b: 8
+
+205 -
+	topleft - 11  11
+	bottomright 11 11 
+
+	color : r: 8 g: 8  b: 8
+
+215 -
+	topleft - 31  11
+	bottomright 31 11 
+
+	color : r: 8 g: 8  b: 8
+
+216 -
+	topleft - 33  11
+	bottomright 33 11 
+
+	color : r: 8 g: 8  b: 8
+
+245 -
+	topleft - 11  13
+	bottomright 11 13 
+
+	color : r: 8 g: 8  b: 8
+
+248 -
+	topleft - 17  13
+	bottomright 17 13 
+
+	color : r: 0 g: 255  b: 0
+
+249 -
+	topleft - 19  13
+	bottomright 19 13 
+
+	color : r: 0 g: 255  b: 0
+
+250 -
+	topleft - 21  13
+	bottomright 21 13 
+
+	color : r: 0 g: 255  b: 0
+
+251 -
+	topleft - 23  13
+	bottomright 23 13 
+
+	color : r: 0 g: 255  b: 0
+
+252 -
+	topleft - 25  13
+	bottomright 25 13 
+
+	color : r: 0 g: 255  b: 0
+
+253 -
+	topleft - 27  13
+	bottomright 27 13 
+
+	color : r: 0 g: 255  b: 0
+
+254 -
+	topleft - 29  13
+	bottomright 29 13 
+
+	color : r: 0 g: 255  b: 0
+
+256 -
+	topleft - 33  13
+	bottomright 33 13 
+
+	color : r: 8 g: 8  b: 8
+
+285 -
+	topleft - 11  15
+	bottomright 11 15 
+
+	color : r: 8 g: 8  b: 8
+
+286 -
+	topleft - 13  15
+	bottomright 13 15 
+
+	color : r: 8 g: 8  b: 8
+
+287 -
+	topleft - 15  15
+	bottomright 15 15 
+
+	color : r: 8 g: 8  b: 8
+
+289 -
+	topleft - 19  15
+	bottomright 19 15 
+
+	color : r: 0 g: 255  b: 0
+
+290 -
+	topleft - 21  15
+	bottomright 21 15 
+
+	color : r: 0 g: 255  b: 0
+
+291 -
+	topleft - 23  15
+	bottomright 23 15 
+
+	color : r: 0 g: 255  b: 0
+
+292 -
+	topleft - 25  15
+	bottomright 25 15 
+
+	color : r: 0 g: 255  b: 0
+
+293 -
+	topleft - 27  15
+	bottomright 27 15 
+
+	color : r: 0 g: 255  b: 0
+
+296 -
+	topleft - 33  15
+	bottomright 33 15 
+
+	color : r: 8 g: 8  b: 8
+
+325 -
+	topleft - 11  17
+	bottomright 11 17 
+
+	color : r: 8 g: 8  b: 8
+
+326 -
+	topleft - 13  17
+	bottomright 13 17 
+
+	color : r: 8 g: 8  b: 8
+
+327 -
+	topleft - 15  17
+	bottomright 15 17 
+
+	color : r: 8 g: 8  b: 8
+
+328 -
+	topleft - 17  17
+	bottomright 17 17 
+
+	color : r: 8 g: 8  b: 8
+
+330 -
+	topleft - 21  17
+	bottomright 21 17 
+
+	color : r: 0 g: 255  b: 0
+
+331 -
+	topleft - 23  17
+	bottomright 23 17 
+
+	color : r: 0 g: 255  b: 0
+
+332 -
+	topleft - 25  17
+	bottomright 25 17 
+
+	color : r: 0 g: 255  b: 0
+
+334 -
+	topleft - 29  17
+	bottomright 29 17 
+
+	color : r: 8 g: 8  b: 8
+
+335 -
+	topleft - 31  17
+	bottomright 31 17 
+
+	color : r: 8 g: 8  b: 8
+
+336 -
+	topleft - 33  17
+	bottomright 33 17 
+
+	color : r: 8 g: 8  b: 8
+
+365 -
+	topleft - 11  19
+	bottomright 11 19 
+
+	color : r: 8 g: 8  b: 8
+
+366 -
+	topleft - 13  19
+	bottomright 13 19 
+
+	color : r: 8 g: 8  b: 8
+
+368 -
+	topleft - 17  19
+	bottomright 17 19 
+
+	color : r: 8 g: 8  b: 8
+
+369 -
+	topleft - 19  19
+	bottomright 19 19 
+
+	color : r: 8 g: 8  b: 8
+
+371 -
+	topleft - 23  19
+	bottomright 23 19 
+
+	color : r: 0 g: 255  b: 0
+
+373 -
+	topleft - 27  19
+	bottomright 27 19 
+
+	color : r: 8 g: 8  b: 8
+
+374 -
+	topleft - 29  19
+	bottomright 29 19 
+
+	color : r: 8 g: 8  b: 8
+
+375 -
+	topleft - 31  19
+	bottomright 31 19 
+
+	color : r: 8 g: 8  b: 8
+
+376 -
+	topleft - 33  19
+	bottomright 33 19 
+
+	color : r: 8 g: 8  b: 8
+
+405 -
+	topleft - 11  21
+	bottomright 11 21 
+
+	color : r: 8 g: 8  b: 8
+
+406 -
+	topleft - 13  21
+	bottomright 13 21 
+
+	color : r: 8 g: 8  b: 8
+
+408 -
+	topleft - 17  21
+	bottomright 17 21 
+
+	color : r: 8 g: 8  b: 8
+
+409 -
+	topleft - 19  21
+	bottomright 19 21 
+
+	color : r: 8 g: 8  b: 8
+
+410 -
+	topleft - 21  21
+	bottomright 21 21 
+
+	color : r: 0 g: 255  b: 0
+
+412 -
+	topleft - 25  21
+	bottomright 25 21 
+
+	color : r: 0 g: 255  b: 0
+
+413 -
+	topleft - 27  21
+	bottomright 27 21 
+
+	color : r: 8 g: 8  b: 8
+
+414 -
+	topleft - 29  21
+	bottomright 29 21 
+
+	color : r: 8 g: 8  b: 8
+
+415 -
+	topleft - 31  21
+	bottomright 31 21 
+
+	color : r: 8 g: 8  b: 8
+
+416 -
+	topleft - 33  21
+	bottomright 33 21 
+
+	color : r: 8 g: 8  b: 8
+
+445 -
+	topleft - 11  23
+	bottomright 11 23 
+
+	color : r: 8 g: 8  b: 8
+
+446 -
+	topleft - 13  23
+	bottomright 13 23 
+
+	color : r: 8 g: 8  b: 8
+
+447 -
+	topleft - 15  23
+	bottomright 15 23 
+
+	color : r: 8 g: 8  b: 8
+
+448 -
+	topleft - 17  23
+	bottomright 17 23 
+
+	color : r: 8 g: 8  b: 8
+
+449 -
+	topleft - 19  23
+	bottomright 19 23 
+
+	color : r: 8 g: 8  b: 8
+
+451 -
+	topleft - 23  23
+	bottomright 23 23 
+
+	color : r: 0 g: 255  b: 0
+
+453 -
+	topleft - 27  23
+	bottomright 27 23 
+
+	color : r: 8 g: 8  b: 8
+
+454 -
+	topleft - 29  23
+	bottomright 29 23 
+
+	color : r: 8 g: 8  b: 8
+
+455 -
+	topleft - 31  23
+	bottomright 31 23 
+
+	color : r: 8 g: 8  b: 8
+
+456 -
+	topleft - 33  23
+	bottomright 33 23 
+
+	color : r: 8 g: 8  b: 8
+
+485 -
+	topleft - 11  25
+	bottomright 11 25 
+
+	color : r: 8 g: 8  b: 8
+
+487 -
+	topleft - 15  25
+	bottomright 15 25 
+
+	color : r: 8 g: 8  b: 8
+
+488 -
+	topleft - 17  25
+	bottomright 17 25 
+
+	color : r: 8 g: 8  b: 8
+
+490 -
+	topleft - 21  25
+	bottomright 21 25 
+
+	color : r: 0 g: 255  b: 0
+
+491 -
+	topleft - 23  25
+	bottomright 23 25 
+
+	color : r: 0 g: 255  b: 0
+
+492 -
+	topleft - 25  25
+	bottomright 25 25 
+
+	color : r: 0 g: 255  b: 0
+
+494 -
+	topleft - 29  25
+	bottomright 29 25 
+
+	color : r: 8 g: 8  b: 8
+
+495 -
+	topleft - 31  25
+	bottomright 31 25 
+
+	color : r: 8 g: 8  b: 8
+
+496 -
+	topleft - 33  25
+	bottomright 33 25 
+
+	color : r: 8 g: 8  b: 8
+
+525 -
+	topleft - 11  27
+	bottomright 11 27 
+
+	color : r: 8 g: 8  b: 8
+
+526 -
+	topleft - 13  27
+	bottomright 13 27 
+
+	color : r: 8 g: 8  b: 8
+
+527 -
+	topleft - 15  27
+	bottomright 15 27 
+
+	color : r: 8 g: 8  b: 8
+
+529 -
+	topleft - 19  27
+	bottomright 19 27 
+
+	color : r: 0 g: 255  b: 0
+
+530 -
+	topleft - 21  27
+	bottomright 21 27 
+
+	color : r: 0 g: 255  b: 0
+
+531 -
+	topleft - 23  27
+	bottomright 23 27 
+
+	color : r: 0 g: 255  b: 0
+
+532 -
+	topleft - 25  27
+	bottomright 25 27 
+
+	color : r: 0 g: 255  b: 0
+
+533 -
+	topleft - 27  27
+	bottomright 27 27 
+
+	color : r: 0 g: 255  b: 0
+
+535 -
+	topleft - 31  27
+	bottomright 31 27 
+
+	color : r: 8 g: 8  b: 8
+
+536 -
+	topleft - 33  27
+	bottomright 33 27 
+
+	color : r: 8 g: 8  b: 8
+
+565 -
+	topleft - 11  29
+	bottomright 11 29 
+
+	color : r: 8 g: 8  b: 8
+
+568 -
+	topleft - 17  29
+	bottomright 17 29 
+
+	color : r: 0 g: 255  b: 0
+
+569 -
+	topleft - 19  29
+	bottomright 19 29 
+
+	color : r: 0 g: 255  b: 0
+
+570 -
+	topleft - 21  29
+	bottomright 21 29 
+
+	color : r: 0 g: 255  b: 0
+
+571 -
+	topleft - 23  29
+	bottomright 23 29 
+
+	color : r: 0 g: 255  b: 0
+
+572 -
+	topleft - 25  29
+	bottomright 25 29 
+
+	color : r: 0 g: 255  b: 0
+
+573 -
+	topleft - 27  29
+	bottomright 27 29 
+
+	color : r: 0 g: 255  b: 0
+
+574 -
+	topleft - 29  29
+	bottomright 29 29 
+
+	color : r: 0 g: 255  b: 0
+
+576 -
+	topleft - 33  29
+	bottomright 33 29 
+
+	color : r: 8 g: 8  b: 8
+
+607 -
+	topleft - 15  31
+	bottomright 15 31 
+
+	color : r: 8 g: 8  b: 8
+
+611 -
+	topleft - 23  31
+	bottomright 23 31 
+
+	color : r: 8 g: 8  b: 8
+
+646 -
+	topleft - 13  33
+	bottomright 13 33 
+
+	color : r: 8 g: 8  b: 8
+
+647 -
+	topleft - 15  33
+	bottomright 15 33 
+
+	color : r: 8 g: 8  b: 8
+
+648 -
+	topleft - 17  33
+	bottomright 17 33 
+
+	color : r: 8 g: 8  b: 8
+
+656 -
+	topleft - 33  33
+	bottomright 33 33 
+
+	color : r: 8 g: 8  b: 8
+
+687 -
+	topleft - 15  35
+	bottomright 15 35 
+
+	color : r: 8 g: 8  b: 8
+
+688 -
+	topleft - 17  35
+	bottomright 17 35 
+
+	color : r: 8 g: 8  b: 8
+
+697 -
+	topleft - 35  35
+	bottomright 35 35 
+
+	color : r: 8 g: 8  b: 8
+
+729 -
+	topleft - 19  37
+	bottomright 19 37 
+
+	color : r: 8 g: 8  b: 8
+
+730 -
+	topleft - 21  37
+	bottomright 21 37 
+
+	color : r: 8 g: 8  b: 8
+
+731 -
+	topleft - 23  37
+	bottomright 23 37 
+
+	color : r: 8 g: 8  b: 8
+
+732 -
+	topleft - 25  37
+	bottomright 25 37 
+
+	color : r: 8 g: 8  b: 8
+
+737 -
+	topleft - 35  37
+	bottomright 35 37 
+
+	color : r: 8 g: 8  b: 8
+
+772 -
+	topleft - 25  39
+	bottomright 25 39 
+
+	color : r: 8 g: 8  b: 8
+
+809 -
+	topleft - 19  41
+	bottomright 19 41 
+
+	color : r: 8 g: 8  b: 8
+
+813 -
+	topleft - 27  41
+	bottomright 27 41 
+
+	color : r: 8 g: 8  b: 8
+

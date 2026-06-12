@@ -1,7 +1,7 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include "types.h"
+#include "../types.h"
 
 void rootInit(win *w);
 void winInit(win *window);

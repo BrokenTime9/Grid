@@ -1,6 +1,8 @@
 #ifndef TYPES_H
 #define TYPES_H
 
+#include "./command/undo.h"
+#include "./themes/theme.h"
 #include <ncurses.h>
 #include <stdbool.h>
 
@@ -19,6 +21,11 @@ typedef struct {
             //
   int tempW;
   int tempH;
+
+  colorInfo *colors;
+  short colorCount;
+  short colorCapCount;
+  short prevColor;
 
 } gridInfo;
 
@@ -39,6 +46,7 @@ typedef struct {
 typedef struct {
 
   bool isSelected;
+  color color;
 
   cellInfo info;
   cellInfo tempInfo;
@@ -51,10 +59,9 @@ typedef struct {
   int maxh;
   int maxw;
 
-  WINDOW *window;
-
   int cursor;
   int totalCells;
+
   cell *cells;
   cell *tempCells;
 
@@ -65,25 +72,37 @@ typedef struct {
 typedef struct {
   int h;
   int w;
-
-  WINDOW *win;
-
 } win2;
 
 typedef struct {
+  int width;
+  int height;
+
+} winSize;
+
+typedef struct {
+  // main rows and cols
   int rows;
   int cols;
 
-  WINDOW *root;
+  // window inits
+  WINDOW *win[7];
+  winSize winSize[7];
+
+  // window sizes
+
+  // main window / subwindow
   win1 win1;
   win2 win2;
-  WINDOW *win4;
 
-  WINDOW *popup;
-  WINDOW *infoPopup;
-  WINDOW *cmd;
-
+  // extras
   extras extras;
+  color *xterm;
+
+  // command List for undo and redo;
+  CmdList commands;
 } win;
+
+enum { ROOT = 0, GRID, SIDEBAR, INFO, POPUP, INFOPOPUP, CMD };
 
 #endif // ndef TYPES_H

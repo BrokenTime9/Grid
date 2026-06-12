@@ -1,7 +1,7 @@
 #ifndef GRID_H
 #define GRID_H
 
-#include "types.h"
+#include "../types.h"
 
 void cellInit(win1 *w);
 void tempCellInit(win1 *w);

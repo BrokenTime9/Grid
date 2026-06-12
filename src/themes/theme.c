@@ -1,8 +1,8 @@
-#include "../include/theme.h"
+#include "../../include/themes/theme.h"
 #include <stdio.h>
 #include <string.h>
 
-int loadTheme(const char *filename, Theme *theme) {
+int loadTheme(char *filename, Theme *theme, color *xterm) {
   FILE *fp = fopen(filename, "r");
 
   if (!fp) {
